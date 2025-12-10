@@ -1,0 +1,11 @@
+{
+  "name": "Mobzi",
+  "short_name": "Mobzi",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#2563EB",
+  "description": "Mobzi - Rutas y transporte público.",
+  "icons": []
+}
