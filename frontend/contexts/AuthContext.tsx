@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  user: any | null;
+  usuario: any | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   
   const value = {
     isAuthenticated: false,
-    user: null,
+    usuario: null,
     loading: false,
     login: async () => { console.log("Login simulado - Modo invitado"); },
     logout: () => { console.log("Logout simulado"); },
