@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import styles from "./home.module.css";
 import Menu from "@/app/menu/Menu";
@@ -29,132 +29,9 @@ type Ruta = {
   moneda?: string;
 };
 
-// ============================================
-// DATOS DE EJEMPLO - COMENTADOS
-// Ahora los datos se obtienen desde el backend
-// ============================================
-// const ROUTE_DETAILS: Record<
-//   string,
-//   {
-//     costoMinimo: number;
-//     costoMaximo: number;
-//     moneda: string;
-//     duracion: string;
-//     frecuencia: string;
-//     paradas: string[];
-//     coordenadas: [number, number][];
-//     notas?: string;
-//   }
-// > = {
-//   "rt-1": {
-//     costoMinimo: 8,
-//     costoMaximo: 10,
-//     moneda: "MXN",
-//     duracion: "25 - 30 min",
-//     frecuencia: "Cada 12 min",
-//     paradas: [
-//       "Centro de Huamantla",
-//       "Universidad Tecnológica de Tlaxcala",
-//       "Libramiento Oriente",
-//       "Barrio de San Sebastián",
-//       "Zona Industrial Xicohténcatl",
-//     ],
-//     coordenadas: [
-//       [-97.931, 19.315],
-//       [-97.925, 19.317],
-//       [-97.920, 19.318],
-//       [-97.915, 19.320],
-//       [-97.910, 19.323],
-//     ],
-//     notas: "Tarifa preferencial para estudiantes disponible al presentar credencial.",
-//   },
-//   "rt-2": {
-//     costoMinimo: 9,
-//     costoMaximo: 11,
-//     moneda: "MXN",
-//     duracion: "35 - 40 min",
-//     frecuencia: "Cada 15 min",
-//     paradas: [
-//       "Terminal Huamantla",
-//       "Av. Juárez",
-//       "Mercado Municipal",
-//       "San Lucas Tecopilco",
-//       "San José Xicohténcatl",
-//     ],
-//     coordenadas: [
-//       [-97.935, 19.313],
-//       [-97.929, 19.314],
-//       [-97.924, 19.316],
-//       [-97.920, 19.319],
-//       [-97.916, 19.322],
-//     ],
-//   },
-//   "rt-3": {
-//     costoMinimo: 10,
-//     costoMaximo: 13,
-//     moneda: "MXN",
-//     duracion: "45 - 50 min",
-//     frecuencia: "Cada 20 min",
-//     paradas: [
-//       "Huamantla Centro",
-//       "Colonia Santa Anita",
-//       "Lib. Tlaxcala-Oriente",
-//       "San Felipe",
-//       "Ixtenco Centro",
-//     ],
-//     coordenadas: [
-//       [-97.932, 19.314],
-//       [-97.928, 19.318],
-//       [-97.924, 19.320],
-//       [-97.919, 19.323],
-//       [-97.913, 19.327],
-//     ],
-//   },
-//   "rt-4": {
-//     costoMinimo: 12,
-//     costoMaximo: 15,
-//     moneda: "MXN",
-//     duracion: "50 - 55 min",
-//     frecuencia: "Cada 25 min",
-//     paradas: [
-//       "Terminal Huamantla",
-//       "San Lucas",
-//       "Santa Anita",
-//       "La Candelaria",
-//       "Zitlaltepec Centro",
-//     ],
-//     coordenadas: [
-//       [-97.934, 19.312],
-//       [-97.929, 19.315],
-//       [-97.924, 19.317],
-//       [-97.920, 19.320],
-//       [-97.914, 19.325],
-//     ],
-//   },
-//   "rt-5": {
-//     costoMinimo: 7,
-//     costoMaximo: 9,
-//     moneda: "MXN",
-//     duracion: "20 - 25 min",
-//     frecuencia: "Cada 10 min",
-//     paradas: [
-//       "Periférico Oriente",
-//       "Colonia Los Volcanes",
-//       "Hospital General",
-//       "Mercado Municipal",
-//       "Centro Histórico",
-//     ],
-//     coordenadas: [
-//       [-97.937, 19.312],
-//       [-97.930, 19.314],
-//       [-97.926, 19.316],
-//       [-97.921, 19.318],
-//       [-97.917, 19.321],
-//     ],
-//   },
-// };
+// ... (existing commented out code)
 
-function HomePage() {
+function HomeContent() {
   // Estados
   const searchParams = useSearchParams();
   const { isAuthenticated } = useAuth();
@@ -1291,4 +1168,14 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default function HomePage() {
+  return (
+    <Suspense fallback={
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#000', color: '#fff' }}>
+        Cargando mapa...
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
+  );
+}
