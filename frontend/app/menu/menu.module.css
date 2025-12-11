@@ -1,9 +1,6 @@
 /* @frontend/ Variables CSS del proyecto MR */
-:root {
-  --primary: #0062ff;
-  --background: #02001f27;
-  --navbar-height: 4rem;
-}
+/* @frontend/ Variables CSS del proyecto MR */
+/* Variables moved to globals.css */
 
 /* @frontend/ Estilos base del menú */
 .navbar {
@@ -11,7 +8,7 @@
   top: 0;
   width: 100%;
   z-index: 50;
-  background: var(--background);
+  background: var(--menu-background);
   border-bottom: 1px solid rgba(0, 110, 255, 0.247);
   -webkit-backdrop-filter: saturate(130%) blur(4px);
   backdrop-filter: saturate(130%) blur(4px);
@@ -182,7 +179,7 @@
   left: 0;
   width: 280px;
   padding: 1rem;
-  background: var(--background);
+  background: var(--menu-background);
   border: none;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;

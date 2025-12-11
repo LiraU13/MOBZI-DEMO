@@ -525,30 +525,7 @@
 /* ESTILOS GLOBALES PARA POPUPS DE MAPBOX (usar :global por CSS Modules) */
 /* =============================== */
 
-:global(.mapboxgl-popup) {
-  z-index: 9999;
-}
 
-:global(.mapboxgl-popup-content) {
-  background-color: #414141d5 !important; /* gris oscuro */
-  color: #ffffff !important; /* azul brillante para el texto */
-  font-weight: 500;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid #ffffff65 !important; /* borde azul */
-  text-align: center;
-  padding: 8px 12px;
-}
-
-/* Si Mapbox genera un elemento interno adicional, también lo forzamos */
-:global(.mapboxgl-popup-content *) {
-  color: #ff0000 !important;
-}
-
-/* Ajusta la punta/triángulo del popup */
-:global(.mapboxgl-popup-tip) {
-  border-top-color: #ffffff65 !important;
-}
 
 @media (max-width: 900px) {
   .filters {
