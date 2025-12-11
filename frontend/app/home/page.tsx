@@ -824,18 +824,39 @@ function HomeContent() {
     <div className={styles.page}>
       {errorMsg && (
         <div style={{
-          backgroundColor: '#ef4444', 
-          color: 'white', 
-          padding: '1rem', 
-          textAlign: 'center',
           position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
+          top: '20px',
+          right: '20px',
           zIndex: 9999,
-          fontWeight: 'bold'
+          backgroundColor: '#ef4444',
+          color: 'white',
+          padding: '12px 24px',
+          borderRadius: '8px',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          fontWeight: '500',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          maxWidth: '90%',
+          width: 'auto',
+          animation: 'fadeIn 0.3s ease-out'
         }}>
-          ⚠️ {errorMsg}
+          <span>⚠️</span>
+          <span>{errorMsg}</span>
+          <button 
+            onClick={() => setErrorMsg(null)}
+            style={{ 
+              marginLeft: '12px', 
+              background: 'none', 
+              border: 'none', 
+              color: 'white', 
+              cursor: 'pointer',
+              fontSize: '18px',
+              padding: '0 4px'
+            }}
+          >
+            ×
+          </button>
         </div>
       )}
       <Menu />
