@@ -35,7 +35,30 @@ function HomeContent() {
   // Estados
   const searchParams = useSearchParams();
   const { isAuthenticated } = useAuth();
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [municipios, setMunicipios] = useState<Municipio[]>([]);
+
+  // Efecto para cargar municipios
+  useEffect(() => {
+    const loadMunicipios = async () => {
+      try {
+        const res = await publicService.getMunicipios();
+        if (res.success && res.data) {
+          setMunicipios(res.data);
+        } else {
+             console.error("Error respuesta municipios:", res);
+             setErrorMsg(`Error cargando municipios: ${res.message || 'Error desconocido'}`);
+        }
+      } catch (error: any) {
+        console.error("Error cargando municipios:", error);
+        setErrorMsg(`Error de conexión (Municipios): ${error.message || 'Revisa tu conexión o el backend'}`);
+      }
+    };
+    loadMunicipios();
+  }, [isAuthenticated]);
+
+  // Inicializar con municipio preferido del usuario si está autenticado
+
   // Inicializar con municipio preferido del usuario si está autenticado
   const [municipioId, setMunicipioId] = useState<string>("");
   const [rutas, setRutas] = useState<Ruta[]>([]);
@@ -799,6 +822,22 @@ function HomeContent() {
 
   return (
     <div className={styles.page}>
+      {errorMsg && (
+        <div style={{
+          backgroundColor: '#ef4444', 
+          color: 'white', 
+          padding: '1rem', 
+          textAlign: 'center',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9999,
+          fontWeight: 'bold'
+        }}>
+          ⚠️ {errorMsg}
+        </div>
+      )}
       <Menu />
       <main className={styles.container}>
         {/* Barra de búsqueda */}
